@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <video id="preview"></video>
     <input type="text" id="openCam">
-    <button id="stop" onclick="stop()">Stop</button>
-    <button id="start" onclick="start()">start</button>
+    <video id="preview"></video>
+    <div class="console"></div>
     <script type="text/javascript">
         var scanner = null
         var isactive = false
@@ -40,6 +39,7 @@
             function sartCam() {
                 Instascan.Camera.getCameras().then(function(cameras) {
                     if (cameras.length > 0) {
+                        $(".console").text(JSON.stringify(cameras))
                         scanner.start(cameras[0]);
                     } else {
                         console.error('No cameras found.');
